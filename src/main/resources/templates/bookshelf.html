@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: standard('Bookshelf')"></head>
+<body>
+    <div th:each="book : ${books}">
+        <h1 th:text="${book.title}">Book Title</h1>
+    </div>
+</body>
+</html>
