@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: standard('Bookshelf')"></head>
 <body>
+    <th:block th:replace="fragments/menu :: standard" />
     <div th:each="book : ${books}">
         <h1 th:text="${book.title}">Book Title</h1>
     </div>
