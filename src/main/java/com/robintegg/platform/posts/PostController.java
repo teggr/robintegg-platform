@@ -7,16 +7,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class PostController {
 
-    @RequestMapping(path = "/**",method = RequestMethod.GET)
+    private final Posts posts;
+
+    private PostContentRenderer contentRenderer = new PostContentRenderer();
+
+    @RequestMapping(path = "/**", method = RequestMethod.GET)
     public String getPost(HttpServletRequest httpRequest, Model model) {
-        // content by request uri
-        // /2020/03/08/testing-spring-boot-applications-with-testcontainers-revisited-2020.html >> generate content based on 
-        // do we need to see if a url can be resolved here 
-        System.out.println(httpRequest.getRequestURI());
-        model.addAttribute("path", httpRequest.getPathInfo());
+        model.addAttribute("post", posts.getByUri(httpRequest.getRequestURI()));
+        model.addAttribute("renderer", contentRenderer);
         return "post";
     }
 
