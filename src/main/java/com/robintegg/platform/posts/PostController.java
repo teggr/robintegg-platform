@@ -19,6 +19,7 @@ public class PostController {
 
     @RequestMapping(path = "/**", method = RequestMethod.GET)
     public String getPost(HttpServletRequest httpRequest, Model model) {
+        System.out.println(httpRequest.getRequestURI());
         model.addAttribute("post", posts.getByUri(httpRequest.getRequestURI()));
         model.addAttribute("renderer", contentRenderer);
         return "post";

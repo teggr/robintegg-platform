@@ -1,7 +1,6 @@
 # milestone 1 - platform
 
 * layout
-  * branding icon
 * images
 * paging
 * database
