@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/head :: standard('Robin Tegg')"></head>
+
 <body>
     <th:block th:replace="fragments/menu :: standard" />
-    <div th:each="content : ${latest}">
-        <h1 th:text="${content.title}">Book Title</h1>
-    </div>
+
+    <section class="hero is-primary is-light block">
+        <div class="hero-body">
+            <p class="title">
+                Robin Tegg
+            </p>
+            <p class="subtitle">
+                A Java developer. Based in Leeds, England. Has interest in Software Architecture, Testing, Automation,
+                Tooling and UI design.
+            </p>
+        </div>
+    </section>
+
+    <section class="section latest">
+
+        <article class="media" th:each="content : ${latest}">
+            <figure class="media-left">
+                <p class="image is-128x128">
+                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <h2 class="title" th:text="${content.title}">Title 1</h2>
+                    <p class="subtitle has-text-grey" >This is a subtitle Title 1</p>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
 </body>
+
 </html>
