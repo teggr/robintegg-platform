@@ -4,4 +4,6 @@ public interface ContentSummary {
 
     String getTitle();
 
+    String getLink();
+
 }

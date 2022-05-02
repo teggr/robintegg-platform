@@ -1,5 +1,6 @@
 # milestone 1 - platform
 
+* content routing
 * layout
 * images
 * paging
