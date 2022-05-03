@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class PostPathResolver {
 
-    public String path( Instant date, String title ) {
+    public String path(Instant date, String title) {
 
         LocalDateTime localDateTime = date.atOffset(ZoneOffset.UTC).toLocalDateTime();
 
-        String path = "/" + localDateTime.format(DateTimeFormatter.ofPattern( "yyyy/MM/dd") );
+        String path = "/" + localDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
 
         path = path + "/" + title + ".html";
 

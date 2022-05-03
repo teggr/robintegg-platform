@@ -3,8 +3,27 @@
 <head th:replace="fragments/head :: standard('Bookshelf')"></head>
 <body>
     <th:block th:replace="fragments/menu :: standard" />
-    <div th:each="book : ${books}">
-        <h1 th:text="${book.title}">Book Title</h1>
-    </div>
+
+    <section class="section books">
+
+        <article class="block" th:each="book : ${books}">
+            <a th:href="@{'' + ${book.uri}}" >
+                <div class="media" >
+                    <figure class="media-left">
+                        <p class="image is-128x128">
+                            <img src="https://bulma.io/images/placeholders/128x128.png">
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <h2 class="title" th:text="${book.title}">Title 1</h2>
+                            <p class="subtitle has-text-grey" >This is a subtitle Title 1</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </article>
+
+    </section>
 </body>
 </html>

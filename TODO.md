@@ -13,3 +13,4 @@
 * convert post content
 * create bookshelf
 * upload links
+* drafts / idea content

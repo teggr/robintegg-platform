@@ -1,5 +1,7 @@
 package com.robintegg.platform.bookshelf;
 
+import java.time.Instant;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -7,6 +9,8 @@ import lombok.Getter;
 @Getter
 public class Book {
 
+    private String uri;
     private String title;
+    private Instant date;
 
 }
