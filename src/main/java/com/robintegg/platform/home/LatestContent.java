@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import com.robintegg.platform.bookshelf.Book;
 import com.robintegg.platform.bookshelf.Bookshelf;
 import com.robintegg.platform.posts.Post;
-import com.robintegg.platform.posts.PostPathResolver;
 import com.robintegg.platform.posts.Posts;
 import com.robintegg.platform.readinglist.ReadingList;
 import com.robintegg.platform.readinglist.ReadingListItem;
@@ -21,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 public class LatestContent {
 
     private final Posts posts;
-    private final PostPathResolver pathResolver;
     private final Bookshelf bookshelf;
     private final ReadingList readingList;
 
@@ -43,7 +41,7 @@ public class LatestContent {
 
             @Override
             public String getLink() {
-                return pathResolver.path(post);
+                return post.getUri();
             }
 
         };

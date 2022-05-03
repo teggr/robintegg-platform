@@ -10,6 +10,7 @@ import lombok.Getter;
 @Getter
 public class Post {
 
+    private String uri;
     private String title;
     private Instant date;
     private String titleImageUrl;

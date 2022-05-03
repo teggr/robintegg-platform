@@ -20,21 +20,25 @@
 
     <section class="section latest">
 
-        <a class="block" th:href="@{'' + ${content.link}}" th:each="content : ${latest}">
-            <article class="media" >
-                <figure class="media-left">
-                    <p class="image is-128x128">
-                        <img src="https://bulma.io/images/placeholders/128x128.png">
-                    </p>
-                </figure>
-                <div class="media-content">
-                    <div class="content">
-                        <h2 class="title" th:text="${content.title}">Title 1</h2>
-                        <p class="subtitle has-text-grey" >This is a subtitle Title 1</p>
+        <article class="block" th:each="content : ${latest}">
+
+            <a th:href="@{'' + ${content.link}}" >
+                <article class="media" >
+                    <figure class="media-left">
+                        <p class="image is-128x128">
+                            <img src="https://bulma.io/images/placeholders/128x128.png">
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <h2 class="title" th:text="${content.title}">Title 1</h2>
+                            <p class="subtitle has-text-grey" >This is a subtitle Title 1</p>
+                        </div>
                     </div>
-                </div>
-            </article>
-        </a>
+                </article>
+            </a>
+
+        </article>
 
     </section>
 

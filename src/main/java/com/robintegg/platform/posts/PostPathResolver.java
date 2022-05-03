@@ -1,5 +1,6 @@
 package com.robintegg.platform.posts;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -10,13 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class PostPathResolver {
 
-    public String path(Post post) {
+    public String path( Instant date, String title ) {
 
-        LocalDateTime localDateTime = post.getDate().atOffset(ZoneOffset.UTC).toLocalDateTime();
+        LocalDateTime localDateTime = date.atOffset(ZoneOffset.UTC).toLocalDateTime();
 
-        String path = localDateTime.format(DateTimeFormatter.ofPattern( "yyyy/MM/dd") );
+        String path = "/" + localDateTime.format(DateTimeFormatter.ofPattern( "yyyy/MM/dd") );
 
-        path = path + "/" + post.getTitle() + ".html";
+        path = path + "/" + title + ".html";
 
         return path.toLowerCase().replaceAll(" ", "-");
 

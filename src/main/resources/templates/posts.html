@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: standard('Bookshelf')"></head>
+<head th:replace="fragments/head :: standard('Posts')"></head>
 <body>
     <th:block th:replace="fragments/menu :: standard" />
-    <div th:each="post : ${posts}">
-        <h1 th:text="${post.title}">Post Title</h1>
-    </div>
+    
+    <section class="section posts">
+
+        <article class="block" th:each="post : ${posts}">
+            <a th:href="@{'' + ${post.uri}}" >
+                <div class="media" >
+                    <figure class="media-left">
+                        <p class="image is-128x128">
+                            <img src="https://bulma.io/images/placeholders/128x128.png">
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <h2 class="title" th:text="${post.title}">Title 1</h2>
+                            <p class="subtitle has-text-grey" >This is a subtitle Title 1</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </article>
+
+    </section>
 </body>
 </html>
