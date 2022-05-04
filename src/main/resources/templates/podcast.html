@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: standard(${book.title})"></head>
+<head th:replace="fragments/head :: standard(${podcast.title})"></head>
 <body>
     <th:block th:replace="fragments/menu :: standard" />
     <section class="section">
         <div class="container">
-          <h1 class="title" th:text="${book.title}">
+          <h1 class="title" th:text="${podcast.title}">
             Hello World
           </h1>
           <p class="subtitle">
-            My first <strong>BOOK</strong>!
+            My first <strong>PODCAST</strong>!
           </p>
         </div>
       </section>

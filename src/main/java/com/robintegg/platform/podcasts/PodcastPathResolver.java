@@ -1,13 +1,13 @@
-package com.robintegg.platform.readinglist;
+package com.robintegg.platform.podcasts;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class ReadingListItemPathResolver {
+public class PodcastPathResolver {
 
     public String path(String title) {
 
-        String path = "/reading-list/" + title + ".html";
+        String path = "/podcasts/" + title + ".html";
 
         return path.toLowerCase().replaceAll(" ", "-");
 

@@ -34,4 +34,8 @@ public class ReadingList {
         return uriToItem.values().stream().toList();
     }
 
+    public ReadingListItem getItem(String requestURI) {
+        return uriToItem.get(requestURI);
+    }
+
 }

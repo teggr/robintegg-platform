@@ -57,8 +57,7 @@ public class LatestContent {
 
             @Override
             public String getLink() {
-                // TODO Auto-generated method stub
-                return null;
+                return book.getUri();
             }
 
         };
@@ -74,8 +73,7 @@ public class LatestContent {
 
             @Override
             public String getLink() {
-                // TODO Auto-generated method stub
-                return null;
+                return readinglistitem.getUri();
             }
 
         };

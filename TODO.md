@@ -1,7 +1,7 @@
 # milestone 1 - platform
 
-* content routing
 * layout
+  * footer
 * images
 * paging
 * database
@@ -13,4 +13,11 @@
 * convert post content
 * create bookshelf
 * upload links
+* upload podcasts
 * drafts / idea content
+* favorite episodesa
+
+# milestone 3 - enhanced content
+
+* weekly digest
+* image optimisations
