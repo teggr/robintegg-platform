@@ -35,4 +35,8 @@ public class Bookshelf {
         return uriToBook.values().stream().collect(Collectors.toList());
     }
 
+    public Book getBook(String requestURI) {
+        return uriToBook.get(requestURI);
+    }
+
 }
