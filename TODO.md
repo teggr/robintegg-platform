@@ -1,12 +1,13 @@
 # milestone 1 - platform
 
 * layout
-  * footer (review social media account icons)
 * images
 * paging
 * database
 * editor
 * deploy
+
+***REMOVED*** ***REMOVED***
 
 # milestone 2 - content
 

@@ -11,9 +11,9 @@ public class Profile {
     private String email = "robin@tegg.me.uk";
     private String tagLine = "A Java developer. Based in Leeds, England. Has interest in Software Architecture, Testing, Automation, Tooling and UI design.";
     private List<SocialMediaAccount> socialMediaAccounts = List.of(
-        new SocialMediaAccount("teggr", "https://github.com/teggr","fa-github"),
-        new SocialMediaAccount("robintegg", "https://www.linkedin.com/in/robintegg","fa-facebook"),
-        new SocialMediaAccount("robintegg", "https://www.twitter.com/robintegg","fa-twitter")
+        new SocialMediaAccount("teggr", "https://github.com/teggr","fa-github-square"),
+        new SocialMediaAccount("robintegg", "https://www.linkedin.com/in/robintegg","fa-linkedin"),
+        new SocialMediaAccount("robintegg", "https://www.twitter.com/robintegg","fa-twitter-square")
     );
 
 

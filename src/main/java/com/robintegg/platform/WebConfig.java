@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        registry.addResourceHandler("/content/**")
+        registry.addResourceHandler("favicon.ico", "/content/**")
                 .addResourceLocations("/public", "classpath:/static/");
                 //.resourceChain(true)
                 //.addResolver(new VersionResourceResolver().addContentVersionStrategy("/**"));

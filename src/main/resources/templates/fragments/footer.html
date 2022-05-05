@@ -10,14 +10,23 @@
       <div class="container">
         <div class="columns">
           <div class="column is-4">
-              <ul>
-                <li th:text="${profile.name}">A name</li>
-                <li><a th:href="${'mailto:' + profile.email}"} th:text="${profile.email}">an@email.com</a></li>
-              </ul>
+            <ul>
+              <li th:text="${profile.name}">A name</li>
+              <li><a th:href="${'mailto:' + profile.email}" } th:text="${profile.email}">an@email.com</a></li>
+            </ul>
           </div>
           <div class="column is-4">
             <ul>
-              <li th:each="account : ${profile.socialMediaAccounts}"><a class="link" th:href="${account.link}"><span class="icon"><i class="fas fa-solid" th:classAppend="${account.icon}"></i></span><span th:text="${account.accountName}">anAccountName</span></a></li>
+              <li th:each="account : ${profile.socialMediaAccounts}">
+                <a class="link" th:href="${account.link}">
+                  <span class="icon-text">
+                    <span class="icon">
+                      <i class="fab" th:classAppend="${account.icon}"></i>
+                    </span>
+                    <span th:text="${account.accountName}">anAccountName</span>
+                  </span>
+                </a>
+              </li>
             </ul>
           </div>
           <div class="column is-4">
