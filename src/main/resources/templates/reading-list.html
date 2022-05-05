@@ -17,7 +17,12 @@
                     <div class="media-content">
                         <div class="content">
                             <h2 class="title" th:text="${item.title}">Title 1</h2>
-                            <p class="subtitle has-text-grey" th:text="${content.subtitle}">This is a subtitle Title 1</p>
+                            <p class="subtitle has-text-grey" th:text="${item.subtitle}">This is a subtitle Title 1</p>
+                            <ul>
+                                <li class="is-inline mr-3" th:each="tag : ${item.tags}">
+                                    <a class="link" th:href="@{/tags/{id}(id=${tag})}" th:text="${tag}">tagName</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
