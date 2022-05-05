@@ -25,7 +25,7 @@ public class ReadingList {
         String title = "Confessions of a low code convert";
         String uri = pathResolver.path(title);
         String link = "https://thenewstack.io/confessions-of-a-low-code-convert/";
-        ReadingListItem readingListItem = new ReadingListItem(uri, title,date, link);
+        ReadingListItem readingListItem = new ReadingListItem(uri, title,date, link, "Low code for the win",List.of("low code"));
         uriToItem.put(readingListItem.getUri(),readingListItem);
     }
 

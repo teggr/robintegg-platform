@@ -25,7 +25,7 @@ public class Bookshelf {
         Instant date = Instant.parse("2022-05-03T13:50:00Z");
         String title = "Developer Hegemony";
         String uri = pathResolver.path(title);
-        Book book = new Book(uri, title, date);
+        Book book = new Book(uri, title, date, "Viva la developer revolution",List.of("career"));
         uriToBook.put(book.getUri(),book);
     }
 

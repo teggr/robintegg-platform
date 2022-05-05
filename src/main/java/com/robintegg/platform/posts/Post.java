@@ -16,5 +16,6 @@ public class Post {
     private String titleImageUrl;
     private List<String> tags;
     private String content;
+    private String subtitle;
 
 }

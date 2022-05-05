@@ -45,7 +45,13 @@
                     <div class="media-content">
                         <div class="content">
                             <h2 class="title" th:text="${content.title}">Title 1</h2>
-                            <p class="subtitle has-text-grey" >This is a subtitle Title 1</p>
+                            <p class="subtitle has-text-grey" th:text="${content.subtitle}">This is a subtitle Title 1</p>
+                            <p class="has-text-grey-light" th:text="${#temporals.format(content.date,'MMM dd, yyyy')}"></p>
+                            <ul>
+                                <li class="is-inline mr-3" th:each="tag : ${content.tags}">
+                                    <a class="link" th:href="@{/tags/{id}(id=${tag})}" th:text="${tag}">tagName</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </article>

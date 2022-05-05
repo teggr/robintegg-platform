@@ -25,7 +25,7 @@ public class Podcasts {
         String title = "Shop Talk Show";
         String uri = pathResolver.path(title);
         String link = "https://thenewstack.io/confessions-of-a-low-code-convert/";
-        Podcast podcast = new Podcast(uri, title,date, link);
+        Podcast podcast = new Podcast(uri, title,date, link, "Web and Frontend Design",List.of("web"));
         uriToPodcast.put(podcast.getUri(),podcast);
     }
 
