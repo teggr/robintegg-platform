@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+  <footer class="footer" th:fragment="standard">
+    <div class="block">
+      <h1 class="title is-5" th:text="${profile.name}">A name</h1>
+    </div>
+    <div class="container">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-4">
+              <ul>
+                <li th:text="${profile.name}">A name</li>
+                <li><a th:href="${'mailto:' + profile.email}"} th:text="${profile.email}">an@email.com</a></li>
+              </ul>
+          </div>
+          <div class="column is-4">
+            <ul>
+              <li th:each="account : ${profile.socialMediaAccounts}"><a class="link" th:href="${account.link}"><span class="icon"><i class="fas fa-solid" th:classAppend="${account.icon}"></i></span><span th:text="${account.accountName}">anAccountName</span></a></li>
+            </ul>
+          </div>
+          <div class="column is-4">
+            <p th:text="${profile.tagLine}">
+              A short summary of the website
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

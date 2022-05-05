@@ -1,7 +1,7 @@
 # milestone 1 - platform
 
 * layout
-  * footer
+  * footer (review social media account icons)
 * images
 * paging
 * database

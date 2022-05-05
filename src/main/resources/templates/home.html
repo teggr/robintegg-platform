@@ -8,13 +8,26 @@
 
     <section class="hero is-primary is-light block">
         <div class="hero-body">
-            <p class="title">
-                Robin Tegg
-            </p>
-            <p class="subtitle">
-                A Java developer. Based in Leeds, England. Has interest in Software Architecture, Testing, Automation,
-                Tooling and UI design.
-            </p>
+            <h1 class="title">
+      
+                <span class="icon">
+                  <i class="fas fa-rss"></i>
+                </span>
+              
+              <p>Robin Tegg</p>
+        
+            </h1>
+            <div class="subtitle is-4">
+                <p> A Java developer. Based in Leeds, England. Has interest in Software Architecture, Testing, Automation,
+                    Tooling and UI design.</p>
+          
+              </div>
+              <a class="button is-success" th:href="@{/atom.xml}">
+                <span class="icon">
+                  <i class="fas fa-rss"></i>
+                </span>
+                <span>Subscribe</span>
+              </a>
         </div>
     </section>
 
@@ -41,6 +54,8 @@
         </article>
 
     </section>
+
+    <th:block th:replace="fragments/footer :: standard" />
 
 </body>
 
