@@ -1,15 +1,17 @@
-# milestone 1 - platform
+# milestone 1 - look and feel
 
-* layout
 * images
-* paging
+
+# milestone 2 - editing
+
 * database
+* tags
 * editor
 * deploy
-* tags
 
-# milestone 2 - content
+# milestone 3 - content
 
+* paging
 * convert post content
 * create bookshelf
 * upload links
@@ -17,7 +19,7 @@
 * drafts / idea content
 * favorite episodesa
 
-# milestone 3 - enhanced content
+# milestone 4 - enhanced content
 
 * weekly digest
 * image optimisations
