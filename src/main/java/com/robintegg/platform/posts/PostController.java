@@ -25,7 +25,7 @@ public class PostController {
         return new Profile();
     }
 
-    @RequestMapping(path = "/**", method = RequestMethod.GET)
+    @RequestMapping(path = "/{year}/{month}/{dayOfMonth}/*.html", method = RequestMethod.GET)
     public String getPost(HttpServletRequest httpRequest, Model model) {
         System.out.println(httpRequest.getRequestURI());
         model.addAttribute("post", posts.getByUri(httpRequest.getRequestURI()));

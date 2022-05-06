@@ -1,7 +1,3 @@
-# milestone 1 - look and feel
-
-* images
-
 # milestone 2 - editing
 
 * database
