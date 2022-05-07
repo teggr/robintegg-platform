@@ -1,8 +1,6 @@
 # milestone 2 - editing
 
 * database
-  * books
-  * podcasts
   * posts
   * readling list
 * paging
