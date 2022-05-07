@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.robintegg.platform.profile.Profile;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,8 @@ public class BookshelfController {
     }
     
     @GetMapping
-    public String getBookshelf(Model model) {
-        model.addAttribute("books", bookshelf.getBooks());
+    public String getBookshelf(Model model, Pageable pageable) {
+        model.addAttribute("books", bookshelf.getBooks(pageable));
         return "bookshelf";
     }
 

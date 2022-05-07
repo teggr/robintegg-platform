@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.robintegg.platform.profile.Profile;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,8 @@ public class PodcastsController {
     }
     
     @GetMapping
-    public String getReadingList(Model model){
-        model.addAttribute("podcasts", podcasts.getItems());
+    public String getPodcasts(Model model, Pageable pageable){
+        model.addAttribute("podcasts", podcasts.getItems(pageable));
         return "podcasts";
     }
 

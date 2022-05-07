@@ -15,6 +15,7 @@ import com.robintegg.platform.posts.Posts;
 import com.robintegg.platform.readinglist.ReadingList;
 import com.robintegg.platform.readinglist.ReadingListItem;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -28,12 +29,12 @@ public class LatestContent {
     private final ReadingList readingList;
     private final Podcasts podcasts;
 
-    public List<ContentSummary> getAll() {
+    public List<ContentSummary> getAll(Pageable pageable) {
         List<ContentSummary> list = new ArrayList<>();
-        list.addAll(posts.getPosts().stream().map(this::mapToSummary).collect(Collectors.toList()));
-        list.addAll(bookshelf.getBooks().stream().map(this::mapToSummary).collect(Collectors.toList()));
-        list.addAll(readingList.getItems().stream().map(this::mapToSummary).collect(Collectors.toList()));
-        list.addAll(podcasts.getItems().stream().map(this::mapToSummary).collect(Collectors.toList()));
+        list.addAll(posts.getPosts(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
+        list.addAll(bookshelf.getBooks(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
+        list.addAll(readingList.getItems(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
+        list.addAll(podcasts.getItems(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
         return list;
     }
 

@@ -2,6 +2,7 @@ package com.robintegg.platform.home;
 
 import com.robintegg.platform.profile.Profile;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,8 +23,8 @@ public class HomeController {
     }
 
     @RequestMapping(path="/", method = RequestMethod.GET)
-    public String getHome(Model model) {
-        model.addAttribute("latest", latestContent.getAll());
+    public String getHome(Model model, Pageable pageable) {
+        model.addAttribute("latest", latestContent.getAll(pageable));
         return "home";
     }
 

@@ -1,7 +1,7 @@
 package com.robintegg.platform.readinglist;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -12,12 +12,12 @@ public class ReadingList {
 
     private final ReadingListItemRepository readingListItemRepository;
 
-    public List<ReadingListItem> getItems() {
-        return readingListItemRepository.findAll();
+    public Page<ReadingListItem> getItems(Pageable pageable) {
+        return readingListItemRepository.findAll(pageable);
     }
 
-    public ReadingListItem getItem(String requestURI) {
-        return readingListItemRepository.findByUri(requestURI);
+    public ReadingListItem getItem(String uri) {
+        return readingListItemRepository.findByUri(uri);
     }
 
 }

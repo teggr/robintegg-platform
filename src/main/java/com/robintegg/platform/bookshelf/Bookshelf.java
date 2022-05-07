@@ -1,7 +1,7 @@
 package com.robintegg.platform.bookshelf;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -13,12 +13,12 @@ public class Bookshelf {
     private final BookRepository bookRepository;
 
 
-    public List<Book> getBooks() {
-        return bookRepository.findAll();
+    public Page<Book> getBooks(Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 
-    public Book getBook(String requestURI) {
-        return bookRepository.findByUri(requestURI);
+    public Book getBook(String uri) {
+        return bookRepository.findByUri(uri);
     }
 
 }

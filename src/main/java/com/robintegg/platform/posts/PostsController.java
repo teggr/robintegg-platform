@@ -2,6 +2,7 @@ package com.robintegg.platform.posts;
 
 import com.robintegg.platform.profile.Profile;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,8 @@ public class PostsController {
     }
     
     @GetMapping("/posts")
-    public String getPosts(Model model) {
-        model.addAttribute("posts", posts.getPosts());
+    public String getPosts(Model model, Pageable pageable) {
+        model.addAttribute("posts", posts.getPosts(pageable));
         return "posts";
     }
 

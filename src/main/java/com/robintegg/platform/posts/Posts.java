@@ -1,7 +1,7 @@
 package com.robintegg.platform.posts;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -12,12 +12,12 @@ public class Posts {
 
     private final PostRepository postRepository;
 
-    public List<Post> getPosts() {
-        return postRepository.findAll();
+    public Page<Post> getPosts(Pageable pageable) {
+        return postRepository.findAll(pageable);
     }
 
-    public Post getByUri(String requestURI) {
-        return postRepository.findByUri(requestURI);
+    public Post getByUri(String uri) {
+        return postRepository.findByUri(uri);
     }
 
 }
