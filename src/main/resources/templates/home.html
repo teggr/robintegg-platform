@@ -59,6 +59,28 @@
 
         </article>
 
+        <nav th:if="${latest.getTotalPages()>1}" class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a th:if="${latest.hasPrevious()}" class="pagination-previous" th:href="@{/(page=${latest.previousPageable().getPageNumber()},size=${latest.previousPageable().getPageSize()})}">Previous</a>
+            <a th:if="${latest.hasNext()}" class="pagination-next" th:href="@{/(page=${latest.nextPageable().getPageNumber()},size=${latest.nextPageable().getPageSize()})}">Next page</a>
+            <ul class="pagination-list">
+                <th:block th:if="${latest.getTotalPages() > 3}">
+                    <li><a class="pagination-link" aria-label="Goto first page" th:href="@{/(page=0,size=${latest.getSize()})}">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                </th:block>
+                <th:block th:if="${latest.getNumber() > 0}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${latest.getNumber()}" th:href="@{/(page=${latest.getNumber() - 1},size=${latest.getSize()})}">45</a></li>
+                </th:block>
+                <li><a class="pagination-link is-current" aria-label="Current Page " aria-current="page" th:text="${latest.getNumber() + 1}" th:href="@{/(page=${latest.getNumber()},size=${latest.getSize()})}">46</a></li>
+                <th:block th:if="${latest.getNumber() + 1 < latest.getTotalPages()}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${latest.getNumber() + 2}" th:href="@{/(page=${latest.getNumber() + 1},size=${latest.getSize()})}">47</a></li>
+                </th:block>
+                <th:block th:if="${latest.getTotalPages() > 3}">
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li th:if="${latest.getTotalPages()>1}"><a class="pagination-link" aria-label="Goto last page" th:text="${latest.getTotalPages()}" th:href="@{/(page=0,size=${latest.getTotalPages() - 1})}">86</a></li>
+                </th:block>
+            </ul>
+        </nav>
+
     </section>
 
     <th:block th:replace="fragments/footer :: standard" />

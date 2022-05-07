@@ -1,7 +1,7 @@
 # milestone 2 - editing
 
 * database
-  * paging
+  * paging (latest content aggregation)
 * tags
 * editor
 * deploy

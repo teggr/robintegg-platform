@@ -15,6 +15,8 @@ import com.robintegg.platform.posts.Posts;
 import com.robintegg.platform.readinglist.ReadingList;
 import com.robintegg.platform.readinglist.ReadingListItem;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -29,13 +31,13 @@ public class LatestContent {
     private final ReadingList readingList;
     private final Podcasts podcasts;
 
-    public List<ContentSummary> getAll(Pageable pageable) {
+    public Page<ContentSummary> getAll(Pageable pageable) {
         List<ContentSummary> list = new ArrayList<>();
         list.addAll(posts.getPosts(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
         list.addAll(bookshelf.getBooks(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
         list.addAll(readingList.getItems(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
         list.addAll(podcasts.getItems(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
-        return list;
+        return new PageImpl<>(list,pageable,0   );
     }
 
     private ContentSummary mapToSummary(Post post) {

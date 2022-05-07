@@ -29,6 +29,28 @@
             </a>
         </article>
 
+        <nav th:if="${items.getTotalPages()>1}" class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a th:if="${items.hasPrevious()}" class="pagination-previous" th:href="@{/reading-list(page=${items.previousPageable().getPageNumber()},size=${items.previousPageable().getPageSize()})}">Previous</a>
+            <a th:if="${items.hasNext()}" class="pagination-next" th:href="@{/reading-list(page=${items.nextPageable().getPageNumber()},size=${items.nextPageable().getPageSize()})}">Next page</a>
+            <ul class="pagination-list">
+                <th:block th:if="${items.getTotalPages() > 3}">
+                    <li><a class="pagination-link" aria-label="Goto first page" th:href="@{/reading-list(page=0,size=${items.getSize()})}">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                </th:block>
+                <th:block th:if="${items.getNumber() > 0}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${items.getNumber()}" th:href="@{/reading-list(page=${items.getNumber() - 1},size=${items.getSize()})}">45</a></li>
+                </th:block>
+                <li><a class="pagination-link is-current" aria-label="Current Page " aria-current="page" th:text="${items.getNumber() + 1}" th:href="@{/reading-list(page=${items.getNumber()},size=${items.getSize()})}">46</a></li>
+                <th:block th:if="${items.getNumber() + 1 < items.getTotalPages()}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${items.getNumber() + 2}" th:href="@{/reading-list(page=${items.getNumber() + 1},size=${items.getSize()})}">47</a></li>
+                </th:block>
+                <th:block th:if="${items.getTotalPages() > 3}">
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li th:if="${items.getTotalPages()>1}"><a class="pagination-link" aria-label="Goto last page" th:text="${items.getTotalPages()}" th:href="@{/reading-list(page=0,size=${items.getTotalPages() - 1})}">86</a></li>
+                </th:block>
+            </ul>
+        </nav>
+
     </section>
 
     <th:block th:replace="fragments/footer :: standard" />
