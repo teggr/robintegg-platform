@@ -1,7 +1,6 @@
 # milestone 2 - editing
 
 * database
-  * posts
   * readling list
 * paging
 * tags
