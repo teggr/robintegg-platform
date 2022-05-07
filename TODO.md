@@ -1,13 +1,17 @@
 # milestone 2 - editing
 
 * database
+  * books
+  * podcasts
+  * posts
+  * readling list
+* paging
 * tags
 * editor
 * deploy
 
 # milestone 3 - content
 
-* paging
 * convert post content
 * create bookshelf
 * upload links

@@ -1,7 +1,7 @@
 package com.robintegg.platform.readinglist;
 
 import java.time.Instant;
-import java.util.List;
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +15,6 @@ public class ReadingListItem {
     private Instant date;
     private String link;
     private String subtitle;
-    private List<String> tags;
+    private Set<String> tags;
 
 }

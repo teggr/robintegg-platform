@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -25,7 +26,7 @@ public class ReadingList {
         String title = "Confessions of a low code convert";
         String uri = pathResolver.path(title);
         String link = "https://thenewstack.io/confessions-of-a-low-code-convert/";
-        ReadingListItem readingListItem = new ReadingListItem(uri, title,date, link, "Low code for the win",List.of("low code"));
+        ReadingListItem readingListItem = new ReadingListItem(uri, title,date, link, "Low code for the win",Set.of("low code"));
         uriToItem.put(readingListItem.getUri(),readingListItem);
     }
 

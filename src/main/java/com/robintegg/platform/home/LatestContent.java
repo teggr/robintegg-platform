@@ -3,6 +3,7 @@ package com.robintegg.platform.home;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.robintegg.platform.bookshelf.Book;
@@ -55,7 +56,7 @@ public class LatestContent {
             }
 
             @Override
-            public List<String> getTags() {
+            public Set<String> getTags() {
                 return post.getTags();
             }
 
@@ -86,7 +87,7 @@ public class LatestContent {
             }
 
             @Override
-            public List<String> getTags() {
+            public Set<String> getTags() {
                 return book.getTags();
             }
 
@@ -117,7 +118,7 @@ public class LatestContent {
             }
 
             @Override
-            public List<String> getTags() {
+            public Set<String> getTags() {
                 return readinglistitem.getTags();
             }
 
@@ -149,7 +150,7 @@ public class LatestContent {
             }
 
             @Override
-            public List<String> getTags() {
+            public Set<String> getTags() {
                 return podcast.getTags();
             }
 

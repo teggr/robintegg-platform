@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -25,7 +26,7 @@ public class Podcasts {
         String title = "Shop Talk Show";
         String uri = pathResolver.path(title);
         String link = "https://thenewstack.io/confessions-of-a-low-code-convert/";
-        Podcast podcast = new Podcast(uri, title,date, link, "Web and Frontend Design",List.of("web"));
+        Podcast podcast = new Podcast(uri, title,date, link, "Web and Frontend Design",Set.of("web"));
         uriToPodcast.put(podcast.getUri(),podcast);
     }
 

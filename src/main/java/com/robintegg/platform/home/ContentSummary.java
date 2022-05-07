@@ -1,7 +1,7 @@
 package com.robintegg.platform.home;
 
 import java.time.Instant;
-import java.util.List;
+import java.util.Set;
 
 public interface ContentSummary {
 
@@ -9,7 +9,7 @@ public interface ContentSummary {
 
     String getSubtitle();
 
-    List<String> getTags();
+    Set<String> getTags();
 
     String getLink();
 
