@@ -1,13 +1,7 @@
 package com.robintegg.platform.posts;
 
 import java.time.Instant;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 

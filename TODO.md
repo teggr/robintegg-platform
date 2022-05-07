@@ -1,8 +1,7 @@
 # milestone 2 - editing
 
 * database
-  * readling list
-* paging
+  * paging
 * tags
 * editor
 * deploy
