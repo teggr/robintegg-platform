@@ -3,6 +3,9 @@ package com.robintegg.platform.podcasts;
 import java.time.Instant;
 import java.util.Set;
 
+import com.robintegg.platform.activity.ActivityLog;
+import com.robintegg.platform.activity.ActivityLogs;
+
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,7 @@ public class PodcastEditor {
 
     private final PodcastRepository podcastRepository;
     private final PodcastPathResolver pathResolver;
+    private final ActivityLogs activityLogs;
 
     public void create(String title, Instant date, String link, String subtitle, Set<String> tags) {
 
@@ -27,7 +31,14 @@ public class PodcastEditor {
                 .tags(tags)
                 .build();
 
-        podcastRepository.save(podcast);
+        Podcast saved = podcastRepository.save(podcast);
+
+        activityLogs.add(ActivityLog.builder()
+                .contentId(saved.getId())
+                .date(saved.getDate())
+                .event("create")
+                .type("podcast")
+                .build());
 
     }
 

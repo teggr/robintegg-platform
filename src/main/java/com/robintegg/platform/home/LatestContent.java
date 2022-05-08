@@ -1,11 +1,9 @@
 package com.robintegg.platform.home;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
+import com.robintegg.platform.activity.ActivityLogs;
 import com.robintegg.platform.bookshelf.Book;
 import com.robintegg.platform.bookshelf.Bookshelf;
 import com.robintegg.platform.podcasts.Podcast;
@@ -16,7 +14,6 @@ import com.robintegg.platform.readinglist.ReadingList;
 import com.robintegg.platform.readinglist.ReadingListItem;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +27,30 @@ public class LatestContent {
     private final Bookshelf bookshelf;
     private final ReadingList readingList;
     private final Podcasts podcasts;
+    private final ActivityLogs activityLogs;
 
     public Page<ContentSummary> getAll(Pageable pageable) {
-        List<ContentSummary> list = new ArrayList<>();
-        list.addAll(posts.getPosts(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
-        list.addAll(bookshelf.getBooks(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
-        list.addAll(readingList.getItems(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
-        list.addAll(podcasts.getItems(pageable).stream().map(this::mapToSummary).collect(Collectors.toList()));
-        return new PageImpl<>(list,pageable,0   );
+
+        // TODO: move mapping out of here to specific content handlers
+
+        return activityLogs
+            .getLatest(pageable)
+            .map(l -> {
+                if("post".equals(l.getType())) {
+                    return mapToSummary(posts.getById(l.getContentId()));
+                }
+                if("book".equals(l.getType())) {
+                    return mapToSummary(bookshelf.getById(l.getContentId()));
+                }
+                if("readingListItem".equals(l.getType())) {
+                    return mapToSummary(readingList.getById(l.getContentId()));
+                }
+                if("podcast".equals(l.getType())) {
+                    return mapToSummary(podcasts.getById(l.getContentId()));
+                }
+                return null;
+            });
+        
     }
 
     private ContentSummary mapToSummary(Post post) {

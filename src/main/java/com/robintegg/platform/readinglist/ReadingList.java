@@ -20,4 +20,8 @@ public class ReadingList {
         return readingListItemRepository.findByUri(uri);
     }
 
+    public ReadingListItem getById(Long id) {
+        return readingListItemRepository.findById(id).orElse(null);
+    }
+
 }

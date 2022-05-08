@@ -20,4 +20,8 @@ public class Podcasts {
         return podcastRepository.findByUri(uri);
     }
 
+    public Podcast getById(Long id) {
+        return podcastRepository.findById(id).orElse(null);
+    }
+
 }

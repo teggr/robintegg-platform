@@ -21,4 +21,8 @@ public class Bookshelf {
         return bookRepository.findByUri(uri);
     }
 
+    public Book getById(Long id) {
+        return bookRepository.findById(id).orElse(null);
+    }
+
 }

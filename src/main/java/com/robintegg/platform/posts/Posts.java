@@ -20,4 +20,8 @@ public class Posts {
         return postRepository.findByUri(uri);
     }
 
+    public Post getById(Long id) {
+        return postRepository.findById(id).orElse(null);
+    }
+
 }

@@ -3,6 +3,9 @@ package com.robintegg.platform.posts;
 import java.time.Instant;
 import java.util.Set;
 
+import com.robintegg.platform.activity.ActivityLog;
+import com.robintegg.platform.activity.ActivityLogs;
+
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,7 @@ public class PostEditor {
 
     private final PostRepository postRepository;
     private final PostPathResolver pathResolver;
+    private final ActivityLogs activityLogs;
 
     public void create(String title, Instant date, String titleImageUrl, Set<String> tags, String content,
             String subtitle) {
@@ -29,7 +33,14 @@ public class PostEditor {
                 .subtitle(subtitle)
                 .build();
 
-        postRepository.save(post);
+        Post saved = postRepository.save(post);
+
+        activityLogs.add(ActivityLog.builder()
+                .contentId(saved.getId())
+                .date(saved.getDate())
+                .event("create")
+                .type("post")
+                .build());
 
     }
 

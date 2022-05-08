@@ -1,10 +1,13 @@
 # milestone 2 - editing
 
-* database
-  * paging (latest content aggregation)
-* tags
+* tags (shared entity - page)
 * editor
-* deploy
+  * full type definition
+  * ui
+  * content handler for home page
+* rss feed /atom.xml
+* flyway script generation tool?
+* deploy (pulumi?)
 
 # milestone 3 - content
 
