@@ -2,6 +2,7 @@ package com.robintegg.platform.home;
 
 import java.time.Instant;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.robintegg.platform.activity.ActivityLogs;
 import com.robintegg.platform.bookshelf.Book;
@@ -12,6 +13,7 @@ import com.robintegg.platform.posts.Post;
 import com.robintegg.platform.posts.Posts;
 import com.robintegg.platform.readinglist.ReadingList;
 import com.robintegg.platform.readinglist.ReadingListItem;
+import com.robintegg.platform.tags.Tag;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -73,7 +75,7 @@ public class LatestContent {
 
             @Override
             public Set<String> getTags() {
-                return post.getTags();
+                return post.getTags().stream().map(Tag::getName).collect(Collectors.toSet());
             }
 
             @Override
@@ -104,7 +106,7 @@ public class LatestContent {
 
             @Override
             public Set<String> getTags() {
-                return book.getTags();
+                return book.getTags().stream().map(Tag::getName).collect(Collectors.toSet());
             }
 
             @Override
@@ -135,7 +137,7 @@ public class LatestContent {
 
             @Override
             public Set<String> getTags() {
-                return readinglistitem.getTags();
+                return readinglistitem.getTags().stream().map(Tag::getName).collect(Collectors.toSet());
             }
 
             @Override
@@ -167,7 +169,7 @@ public class LatestContent {
 
             @Override
             public Set<String> getTags() {
-                return podcast.getTags();
+                return podcast.getTags().stream().map(Tag::getName).collect(Collectors.toSet());
             }
 
             @Override

@@ -3,11 +3,16 @@ package com.robintegg.platform.posts;
 import java.time.Instant;
 import java.util.Set;
 
-import javax.persistence.ElementCollection;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.robintegg.platform.tags.Tag;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,8 +34,15 @@ public class Post {
     private String title;
     private Instant date;
     private String titleImageUrl;
-    @ElementCollection
-    private Set<String> tags;
+    @ManyToMany
+    @JoinTable(
+        name="POST_TAGS",
+        joinColumns=
+            @JoinColumn(name="POST_ID", referencedColumnName="ID"),
+        inverseJoinColumns=
+            @JoinColumn(name="TAG_ID", referencedColumnName="ID")
+    )
+    private Set<Tag> tags;
     @Lob
     private String content;
     private String subtitle;

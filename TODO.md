@@ -1,6 +1,6 @@
 # milestone 2 - editing
 
-* tags (shared entity - page)
+* tags (single tag page - index of tags > content with date? - same as last content which is based on activity log - do i need to generate a constrained index of content for front page + tags -> use events)
 * editor
   * full type definition
   * ui

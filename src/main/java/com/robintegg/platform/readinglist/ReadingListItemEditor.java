@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.robintegg.platform.activity.ActivityLog;
 import com.robintegg.platform.activity.ActivityLogs;
+import com.robintegg.platform.tags.Tags;
 
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class ReadingListItemEditor {
     private final ReadingListItemRepository readingListItemRepository;
     private final ReadingListItemPathResolver pathResolver;
     private final ActivityLogs activityLogs;
+    private final Tags tags;
 
     public void create(String title, Instant date, String link, String subtitle, Set<String> tags) {
 
@@ -28,7 +30,7 @@ public class ReadingListItemEditor {
                 .date(date)
                 .link(link)
                 .subtitle(subtitle)
-                .tags(tags)
+                .tags(this.tags.getTagsForNames(tags))
                 .build();
 
         ReadingListItem saved = readingListItemRepository.save(item);

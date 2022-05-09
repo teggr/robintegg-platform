@@ -3,7 +3,13 @@ package com.robintegg.platform.readinglist;
 import java.time.Instant;
 import java.util.Set;
 
-import javax.persistence.ElementCollection;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.robintegg.platform.tags.Tag;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,7 +35,14 @@ public class ReadingListItem {
     private Instant date;
     private String link;
     private String subtitle;
-    @ElementCollection
-    private Set<String> tags;
+    @ManyToMany
+    @JoinTable(
+        name="READING_LIST_ITEM_TAGS",
+        joinColumns=
+            @JoinColumn(name="READING_LIST_ITEM_ID", referencedColumnName="ID"),
+        inverseJoinColumns=
+            @JoinColumn(name="TAG_ID", referencedColumnName="ID")
+    )
+    private Set<Tag> tags;
 
 }

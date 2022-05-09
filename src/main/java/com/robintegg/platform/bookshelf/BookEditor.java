@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.robintegg.platform.activity.ActivityLog;
 import com.robintegg.platform.activity.ActivityLogs;
+import com.robintegg.platform.tags.Tags;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ public class BookEditor {
     private final BookRepository bookRepository;
     private final BookPathResolver pathResolver;
     private final ActivityLogs activityLogs;
+    private final Tags tags;
 
     @Transactional
     public void create(String title, Instant date, String subtitle, Set<String> tags) {
@@ -29,7 +31,7 @@ public class BookEditor {
                 .title(title)
                 .date(date)
                 .subtitle(subtitle)
-                .tags(tags)
+                .tags(this.tags.getTagsForNames(tags))
                 .build();
 
         Book saved = bookRepository.save(book);

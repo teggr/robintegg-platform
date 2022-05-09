@@ -3,10 +3,15 @@ package com.robintegg.platform.bookshelf;
 import java.time.Instant;
 import java.util.Set;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+
+import com.robintegg.platform.tags.Tag;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -28,7 +33,14 @@ public class Book {
     private String title;
     private Instant date;
     private String subtitle;
-    @ElementCollection
-    private Set<String> tags;
+    @ManyToMany
+    @JoinTable(
+        name="BOOK_TAGS",
+        joinColumns=
+            @JoinColumn(name="BOOK_ID", referencedColumnName="ID"),
+        inverseJoinColumns=
+            @JoinColumn(name="TAG_ID", referencedColumnName="ID")
+    )
+    private Set<Tag> tags;
 
 }

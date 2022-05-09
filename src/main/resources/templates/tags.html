@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: standard('Tags')"></head>
+<body>
+    <th:block th:replace="fragments/menu :: standard" />
+
+    <section class="section items">
+
+        <article class="block" th:each="tag : ${tags}">
+            <a th:href="@{'/tags/' + ${tag.name}}" >
+                <div class="media" >
+                    <div class="media-content">
+                        <div class="content">
+                            <h2 class="title" th:text="${tag.name}">Title 1</h2>
+                            <p class="subtitle has-text-grey"  th:text="${tag.name}">This is a subtitle Title 1</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </article>
+
+        <nav th:if="${tags.getTotalPages()>1}" class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a th:if="${tags.hasPrevious()}" class="pagination-previous" th:href="@{/tags(page=${tags.previousPageable().getPageNumber()},size=${tags.previousPageable().getPageSize()})}">Previous</a>
+            <a th:if="${tags.hasNext()}" class="pagination-next" th:href="@{/tags(page=${tags.nextPageable().getPageNumber()},size=${tags.nextPageable().getPageSize()})}">Next page</a>
+            <ul class="pagination-list">
+                <th:block th:if="${tags.getTotalPages() > 3}">
+                    <li><a class="pagination-link" aria-label="Goto first page" th:href="@{/tags(page=0,size=${tags.getSize()})}">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                </th:block>
+                <th:block th:if="${tags.getNumber() > 0}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${tags.getNumber()}" th:href="@{/tags(page=${tags.getNumber() - 1},size=${tags.getSize()})}">45</a></li>
+                </th:block>
+                <li><a class="pagination-link is-current" aria-label="Current Page " aria-current="page" th:text="${tags.getNumber() + 1}" th:href="@{/tags(page=${tags.getNumber()},size=${tags.getSize()})}">46</a></li>
+                <th:block th:if="${tags.getNumber() + 1 < tags.getTotalPages()}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${tags.getNumber() + 2}" th:href="@{/tags(page=${tags.getNumber() + 1},size=${tags.getSize()})}">47</a></li>
+                </th:block>
+                <th:block th:if="${tags.getTotalPages() > 3}">
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li th:if="${tags.getTotalPages()>1}"><a class="pagination-link" aria-label="Goto last page" th:text="${tags.getTotalPages()}" th:href="@{/tags(page=0,size=${tags.getTotalPages() - 1})}">86</a></li>
+                </th:block>
+            </ul>
+        </nav>
+
+    </section>
+
+    <th:block th:replace="fragments/footer :: standard" />
+
+</body>
+</html>
