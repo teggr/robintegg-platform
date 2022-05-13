@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
 import com.robintegg.platform.tags.Tag;
 
 import lombok.AccessLevel;

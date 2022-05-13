@@ -6,8 +6,6 @@ import java.util.Set;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
 import com.robintegg.platform.tags.Tag;
 
 import javax.persistence.Entity;
