@@ -11,9 +11,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
+            .headers().frameOptions().sameOrigin().and()
+            .csrf().disable()
             .authorizeHttpRequests()
-            .anyRequest()
-            .permitAll();
+                .anyRequest()
+                    .permitAll();
 
     }
 
