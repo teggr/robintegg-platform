@@ -40,6 +40,7 @@ public class PodcastEditor {
                 .date(saved.getDate())
                 .event("create")
                 .type("podcast")
+                .tags(this.tags.getTagsForNames(tags))
                 .build());
 
     }

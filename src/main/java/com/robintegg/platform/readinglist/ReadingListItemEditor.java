@@ -40,6 +40,7 @@ public class ReadingListItemEditor {
                 .date(saved.getDate())
                 .event("create")
                 .type("readingListItem")
+                .tags(this.tags.getTagsForNames(tags))
                 .build());
 
     }

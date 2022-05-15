@@ -1,5 +1,6 @@
 package com.robintegg.platform.tags;
 
+import com.robintegg.platform.home.LatestContent;
 import com.robintegg.platform.profile.Profile;
 
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class TagsController {
 
     private final Tags tags;
+    private final LatestContent latestContent;
 
     @ModelAttribute("profile")
     public Profile getProfile() {
@@ -31,9 +33,9 @@ public class TagsController {
     }
 
     @GetMapping("/{tagName}")
-    public String getTagContent( @PathVariable("tagName") String tagName, Model model, Pageable pageable){
-       // model.addAttribute("tags", tags.getTagContent(tagName, pageable));
-        return "tags";
+    public String getLatestTagContent( @PathVariable("tagName") String tagName, Model model, Pageable pageable){
+        model.addAttribute("latest", latestContent.getAllByTag(tagName, pageable));
+        return "tag";
     }
 
 }

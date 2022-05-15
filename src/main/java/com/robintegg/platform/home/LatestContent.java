@@ -54,6 +54,31 @@ public class LatestContent {
             });
         
     }
+    
+
+    public Object getAllByTag(String tagName, Pageable pageable) {
+    
+        // TODO: move mapping out of here to specific content handlers
+
+        return activityLogs
+            .getLatestByTag(tagName, pageable)
+            .map(l -> {
+                if("post".equals(l.getType())) {
+                    return mapToSummary(posts.getById(l.getContentId()));
+                }
+                if("book".equals(l.getType())) {
+                    return mapToSummary(bookshelf.getById(l.getContentId()));
+                }
+                if("readingListItem".equals(l.getType())) {
+                    return mapToSummary(readingList.getById(l.getContentId()));
+                }
+                if("podcast".equals(l.getType())) {
+                    return mapToSummary(podcasts.getById(l.getContentId()));
+                }
+                return null;
+            });
+
+    }
 
     private ContentSummary mapToSummary(Post post) {
         return new ContentSummary() {

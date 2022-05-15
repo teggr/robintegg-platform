@@ -1,5 +1,7 @@
 package com.robintegg.platform.activity;
 
+import com.robintegg.platform.home.ContentSummary;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,10 @@ public class ActivityLogs {
 
     public void add(ActivityLog log) {
         activityLogRepository.save(log);
+    }
+
+    public Page<ActivityLog> getLatestByTag(String tagName, Pageable pageable) {
+        return activityLogRepository.findAllByTagsNameContainingOrderByDateDesc(tagName, pageable);
     }
 
 }

@@ -41,6 +41,7 @@ public class BookEditor {
                 .date(saved.getDate())
                 .event("create")
                 .type("book")
+                .tags(this.tags.getTagsForNames(tags))
                 .build());
 
     }

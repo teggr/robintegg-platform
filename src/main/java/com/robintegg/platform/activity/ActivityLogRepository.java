@@ -8,4 +8,6 @@ interface ActivityLogRepository extends JpaRepository<ActivityLog,Long> {
 
     Page<ActivityLog> findAllByOrderByDateDesc(Pageable pageable);
 
+    Page<ActivityLog> findAllByTagsNameContainingOrderByDateDesc(String tagName, Pageable pageable);
+
 }

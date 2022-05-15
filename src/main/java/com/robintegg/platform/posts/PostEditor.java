@@ -42,6 +42,7 @@ public class PostEditor {
                 .date(saved.getDate())
                 .event("create")
                 .type("post")
+                .tags(this.tags.getTagsForNames(tags))
                 .build());
 
     }

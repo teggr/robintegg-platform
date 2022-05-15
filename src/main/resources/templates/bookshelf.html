@@ -20,7 +20,7 @@
                             <p class="subtitle has-text-grey" th:text="${book.subtitle}">This is a subtitle Title 1</p>
                             <ul>
                                 <li class="is-inline mr-3" th:each="tag : ${book.tags}">
-                                    <a class="link" th:href="@{/tags/{id}(id=${tag})}" th:text="${tag}">tagName</a>
+                                    <a class="link" th:href="@{/tags/{id}(id=${tag.name})}" th:text="${tag.name}">tagName</a>
                                 </li>
                             </ul>
                         </div>

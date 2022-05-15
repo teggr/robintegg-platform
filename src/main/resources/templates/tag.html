@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: standard('Tag')"></head>
+<body>
+    <th:block th:replace="fragments/menu :: standard" />
+
+    <section class="section latest">
+
+        <article class="block" th:each="content : ${latest}">
+
+            <a th:href="@{'' + ${content.link}}" >
+                <article class="media" >
+                    <figure class="media-left">
+                        <p class="image is-128x128">
+                            <img src="https://bulma.io/images/placeholders/128x128.png">
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <h2 class="title" th:text="${content.title}">Title 1</h2>
+                            <p class="subtitle has-text-grey" th:text="${content.subtitle}">This is a subtitle Title 1</p>
+                            <p class="has-text-grey-light" th:text="${#temporals.format(content.date,'MMM dd, yyyy')}"></p>
+                            <ul>
+                                <li class="is-inline mr-3" th:each="tag : ${content.tags}">
+                                    <a class="link" th:href="@{/tags/{id}(id=${tag})}" th:text="${tag}">tagName</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </a>
+
+        </article>
+
+        <nav th:if="${latest.getTotalPages()>1}" class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a th:if="${latest.hasPrevious()}" class="pagination-previous" th:href="@{/(page=${latest.previousPageable().getPageNumber()},size=${latest.previousPageable().getPageSize()})}">Previous</a>
+            <a th:if="${latest.hasNext()}" class="pagination-next" th:href="@{/(page=${latest.nextPageable().getPageNumber()},size=${latest.nextPageable().getPageSize()})}">Next page</a>
+            <ul class="pagination-list">
+                <th:block th:if="${latest.getTotalPages() > 3}">
+                    <li><a class="pagination-link" aria-label="Goto first page" th:href="@{/(page=0,size=${latest.getSize()})}">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                </th:block>
+                <th:block th:if="${latest.getNumber() > 0}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${latest.getNumber()}" th:href="@{/(page=${latest.getNumber() - 1},size=${latest.getSize()})}">45</a></li>
+                </th:block>
+                <li><a class="pagination-link is-current" aria-label="Current Page " aria-current="page" th:text="${latest.getNumber() + 1}" th:href="@{/(page=${latest.getNumber()},size=${latest.getSize()})}">46</a></li>
+                <th:block th:if="${latest.getNumber() + 1 < latest.getTotalPages()}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${latest.getNumber() + 2}" th:href="@{/(page=${latest.getNumber() + 1},size=${latest.getSize()})}">47</a></li>
+                </th:block>
+                <th:block th:if="${latest.getTotalPages() > 3}">
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li th:if="${latest.getTotalPages()>1}"><a class="pagination-link" aria-label="Goto last page" th:text="${latest.getTotalPages()}" th:href="@{/(page=0,size=${latest.getTotalPages() - 1})}">86</a></li>
+                </th:block>
+            </ul>
+        </nav>
+
+    </section>
+
+    <th:block th:replace="fragments/footer :: standard" />
+
+</body>
+</html>
