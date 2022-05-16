@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: standard('Admin Robin Tegg')"></head>
+
+<body>
+    <th:block th:replace="fragments/menu :: standard" />
+
+    <section class="section">
+
+        <h1 class="title">Admin</h1>
+
+        <ul>
+            <li><a th:href="@{/admin/bookshelf}">Bookshelf</a></li>
+        </ul>
+
+    </section>
+
+    <th:block th:replace="fragments/footer :: standard" />
+
+</body>
+
+</html>

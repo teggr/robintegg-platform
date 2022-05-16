@@ -2,6 +2,7 @@ package com.robintegg.platform.tags;
 
 import com.robintegg.platform.home.LatestContent;
 import com.robintegg.platform.profile.Profile;
+import com.robintegg.platform.profile.Profiles;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -20,10 +21,11 @@ public class TagsController {
 
     private final Tags tags;
     private final LatestContent latestContent;
+    private final Profiles profiles;
 
     @ModelAttribute("profile")
     public Profile getProfile() {
-        return new Profile();
+        return profiles.getProfile();
     }
 
     @GetMapping

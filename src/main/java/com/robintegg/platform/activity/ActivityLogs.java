@@ -1,17 +1,17 @@
 package com.robintegg.platform.activity;
 
-import com.robintegg.platform.home.ContentSummary;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
 @Component
+@Transactional
 @RequiredArgsConstructor
 public class ActivityLogs {
-    
+
     private final ActivityLogRepository activityLogRepository;
 
     public Page<ActivityLog> getLatest(Pageable pageable) {
@@ -24,6 +24,10 @@ public class ActivityLogs {
 
     public Page<ActivityLog> getLatestByTag(String tagName, Pageable pageable) {
         return activityLogRepository.findAllByTagsNameContainingOrderByDateDesc(tagName, pageable);
+    }
+
+    public void removeContent(Long id) {
+        activityLogRepository.deleteAllByContentId(id);
     }
 
 }

@@ -1,22 +1,20 @@
-package com.robintegg.platform.home;
+package com.robintegg.platform.admin;
 
 import com.robintegg.platform.profile.Profile;
 import com.robintegg.platform.profile.Profiles;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequestMapping("/admin")
 @RequiredArgsConstructor
-public class HomeController {
+public class AdminHomeController {
 
-    private final LatestContent latestContent;
     private final Profiles profiles;
 
     @ModelAttribute("profile")
@@ -24,10 +22,9 @@ public class HomeController {
         return profiles.getProfile();
     }
 
-    @RequestMapping(path="/", method = RequestMethod.GET)
-    public String getHome(Model model, Pageable pageable) {
-        model.addAttribute("latest", latestContent.getAll(pageable));
-        return "home";
+    @GetMapping
+    public String getAdminHome() {
+        return "admin";
     }
-
+    
 }

@@ -3,6 +3,7 @@ package com.robintegg.platform.posts;
 import javax.servlet.http.HttpServletRequest;
 
 import com.robintegg.platform.profile.Profile;
+import com.robintegg.platform.profile.Profiles;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +18,13 @@ import lombok.RequiredArgsConstructor;
 public class PostController {
 
     private final Posts posts;
+    private final Profiles profiles;
 
     private PostContentRenderer contentRenderer = new PostContentRenderer();
 
     @ModelAttribute("profile")
     public Profile getProfile() {
-        return new Profile();
+        return profiles.getProfile();
     }
 
     @RequestMapping(path = "/{year}/{month}/{dayOfMonth}/*.html", method = RequestMethod.GET)

@@ -4,9 +4,15 @@
 
 * editor
   * full type definition
+    * books
+    * podcasts
+    * posts
+    * readling list
+    * tags (merge?)
     * Unsplash attributions
   * ui
   * content handler for home page
+  * published / unpublished content
 * rss feed /atom.xml
 * flyway script generation tool?
 * deploy (pulumi?)

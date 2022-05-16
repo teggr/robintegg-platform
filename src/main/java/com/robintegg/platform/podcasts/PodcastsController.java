@@ -3,6 +3,7 @@ package com.robintegg.platform.podcasts;
 import javax.servlet.http.HttpServletRequest;
 
 import com.robintegg.platform.profile.Profile;
+import com.robintegg.platform.profile.Profiles;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -19,10 +20,11 @@ import lombok.RequiredArgsConstructor;
 public class PodcastsController {
 
     private final Podcasts podcasts;
+    private final Profiles profiles;
 
     @ModelAttribute("profile")
     public Profile getProfile() {
-        return new Profile();
+        return profiles.getProfile();
     }
     
     @GetMapping
