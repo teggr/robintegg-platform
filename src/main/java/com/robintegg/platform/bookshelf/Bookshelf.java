@@ -11,8 +11,7 @@ import lombok.RequiredArgsConstructor;
 public class Bookshelf {
 
     private final BookRepository bookRepository;
-
-
+    
     public Page<Book> getBooks(Pageable pageable) {
         return bookRepository.findAll(pageable);
     }

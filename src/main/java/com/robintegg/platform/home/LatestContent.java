@@ -4,9 +4,9 @@ import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.robintegg.platform.activity.ActivityLogs;
 import com.robintegg.platform.bookshelf.Book;
 import com.robintegg.platform.bookshelf.Bookshelf;
+import com.robintegg.platform.index.IndexedContents;
 import com.robintegg.platform.podcasts.Podcast;
 import com.robintegg.platform.podcasts.Podcasts;
 import com.robintegg.platform.posts.Post;
@@ -29,7 +29,7 @@ public class LatestContent {
     private final Bookshelf bookshelf;
     private final ReadingList readingList;
     private final Podcasts podcasts;
-    private final ActivityLogs activityLogs;
+    private final IndexedContents activityLogs;
 
     public Page<ContentSummary> getAll(Pageable pageable) {
 
@@ -38,17 +38,17 @@ public class LatestContent {
         return activityLogs
             .getLatest(pageable)
             .map(l -> {
-                if("post".equals(l.getType())) {
-                    return mapToSummary(posts.getById(l.getContentId()));
+                if("post".equals(l.getId().getContentType())) {
+                    return mapToSummary(posts.getById(l.getId().getContentId()));
                 }
-                if("book".equals(l.getType())) {
-                    return mapToSummary(bookshelf.getById(l.getContentId()));
+                if("book".equals(l.getId().getContentType())) {
+                    return mapToSummary(bookshelf.getById(l.getId().getContentId()));
                 }
-                if("readingListItem".equals(l.getType())) {
-                    return mapToSummary(readingList.getById(l.getContentId()));
+                if("readingListItem".equals(l.getId().getContentType())) {
+                    return mapToSummary(readingList.getById(l.getId().getContentId()));
                 }
-                if("podcast".equals(l.getType())) {
-                    return mapToSummary(podcasts.getById(l.getContentId()));
+                if("podcast".equals(l.getId().getContentType())) {
+                    return mapToSummary(podcasts.getById(l.getId().getContentId()));
                 }
                 return null;
             });
@@ -63,17 +63,17 @@ public class LatestContent {
         return activityLogs
             .getLatestByTag(tagName, pageable)
             .map(l -> {
-                if("post".equals(l.getType())) {
-                    return mapToSummary(posts.getById(l.getContentId()));
+                if("post".equals(l.getId().getContentType())) {
+                    return mapToSummary(posts.getById(l.getId().getContentId()));
                 }
-                if("book".equals(l.getType())) {
-                    return mapToSummary(bookshelf.getById(l.getContentId()));
+                if("book".equals(l.getId().getContentType())) {
+                    return mapToSummary(bookshelf.getById(l.getId().getContentId()));
                 }
-                if("readingListItem".equals(l.getType())) {
-                    return mapToSummary(readingList.getById(l.getContentId()));
+                if("readingListItem".equals(l.getId().getContentType())) {
+                    return mapToSummary(readingList.getById(l.getId().getContentId()));
                 }
-                if("podcast".equals(l.getType())) {
-                    return mapToSummary(podcasts.getById(l.getContentId()));
+                if("podcast".equals(l.getId().getContentType())) {
+                    return mapToSummary(podcasts.getById(l.getId().getContentId()));
                 }
                 return null;
             });

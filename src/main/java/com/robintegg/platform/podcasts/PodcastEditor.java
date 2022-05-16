@@ -3,8 +3,9 @@ package com.robintegg.platform.podcasts;
 import java.time.Instant;
 import java.util.Set;
 
-import com.robintegg.platform.activity.ActivityLog;
-import com.robintegg.platform.activity.ActivityLogs;
+import com.robintegg.platform.index.IndexedContents;
+import com.robintegg.platform.index.IndexedContent;
+import com.robintegg.platform.index.IndexedContentId;
 import com.robintegg.platform.tags.Tags;
 
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class PodcastEditor {
 
     private final PodcastRepository podcastRepository;
     private final PodcastPathResolver pathResolver;
-    private final ActivityLogs activityLogs;
+    private final IndexedContents indexedContents;
     private final Tags tags;
 
     public void create(String title, Instant date, String link, String subtitle, Set<String> tags) {
@@ -35,11 +36,10 @@ public class PodcastEditor {
 
         Podcast saved = podcastRepository.save(podcast);
 
-        activityLogs.add(ActivityLog.builder()
-                .contentId(saved.getId())
+        indexedContents.add(IndexedContent.builder()
+                .id(new IndexedContentId("podcast", saved.getId()))
                 .date(saved.getDate())
                 .event("create")
-                .type("podcast")
                 .tags(this.tags.getTagsForNames(tags))
                 .build());
 

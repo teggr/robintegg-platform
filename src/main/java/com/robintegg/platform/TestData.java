@@ -28,7 +28,7 @@ public class TestData implements ApplicationRunner {
 
                 bookEditor.create("Developer Hegemony", Instant.parse("2022-05-03T13:50:00Z"),
                                 "Viva la developer revolution",
-                                Set.of("career"));
+                                Set.of("career"), true);
 
                 podcastEditor.create("Shop Talk Show", Instant.parse("2022-05-02T13:50:00Z"),
                                 "https://thenewstack.io/confessions-of-a-low-code-convert/", "Web and Frontend Design",

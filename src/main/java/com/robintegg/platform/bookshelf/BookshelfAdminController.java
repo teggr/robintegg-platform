@@ -1,7 +1,5 @@
 package com.robintegg.platform.bookshelf;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.robintegg.platform.profile.Profile;
 import com.robintegg.platform.profile.Profiles;
 
@@ -21,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BookshelfAdminController {
 
-    private final Bookshelf bookshelf;
     private final BookEditor bookEditor;
     private final Profiles profiles;
 
@@ -32,7 +29,7 @@ public class BookshelfAdminController {
 
     @GetMapping
     public String getBookshelfItems(Model model, Pageable pageable) {
-        model.addAttribute("books", bookshelf.getBooks(pageable));
+        model.addAttribute("books", bookEditor.getBooks(pageable));
         return "bookshelf-admin";
     }
 
