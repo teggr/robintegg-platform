@@ -1,5 +1,6 @@
 package com.robintegg.platform.home;
 
+import com.robintegg.platform.index.IndexedContents;
 import com.robintegg.platform.profile.Profile;
 import com.robintegg.platform.profile.Profiles;
 
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final LatestContent latestContent;
+    private final IndexedContents indexedContents;
     private final Profiles profiles;
 
     @ModelAttribute("profile")
@@ -26,7 +27,7 @@ public class HomeController {
 
     @RequestMapping(path="/", method = RequestMethod.GET)
     public String getHome(Model model, Pageable pageable) {
-        model.addAttribute("latest", latestContent.getAll(pageable));
+        model.addAttribute("latest", indexedContents.getLatest(pageable));
         return "home";
     }
 

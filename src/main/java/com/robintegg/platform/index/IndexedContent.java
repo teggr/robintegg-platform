@@ -30,15 +30,20 @@ public class IndexedContent {
     @EmbeddedId
     @GeneratedValue
     private IndexedContentId id;
+
+    private String title;
+    private String subtitle;
     private Instant date;
     @ManyToMany
-    @JoinTable(name = "INDEXED_LOG_TAGS",
-     joinColumns = {
-        @JoinColumn(name = "INDEXED_LOG_ID", referencedColumnName = "CONTENTID"),
-        @JoinColumn(name = "INDEXED_LOG_TYPE", referencedColumnName = "CONTENTTYPE")
-     } , 
-     inverseJoinColumns = @JoinColumn(name = "TAG_ID", referencedColumnName = "ID")
+    @JoinTable(name = "INDEXED_CONTENT_TAGS",
+        joinColumns = {
+            @JoinColumn(name = "INDEXED_CONTENT_ID", referencedColumnName = "CONTENTID"),
+            @JoinColumn(name = "INDEXED_CONTENT_TYPE", referencedColumnName = "CONTENTTYPE")
+        } , 
+        inverseJoinColumns = @JoinColumn(name = "TAG_ID", referencedColumnName = "ID")
      )
-    private Set<Tag> tags;
+     private Set<Tag> tags;
+     private String uri;
+     private boolean published;
 
 }

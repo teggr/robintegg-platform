@@ -12,12 +12,16 @@ class ReadingListItemIndexedContentFactory implements IndexedContentFactory {
     @Override
     public IndexedContent create(Object source) {
 
-        ReadingListItem podcast = (ReadingListItem) source;
+        ReadingListItem item = (ReadingListItem) source;
 
         return IndexedContent.builder()
-                .id(new IndexedContentId("readingListItem", podcast.getId()))
-                .date(podcast.getDate())
-                .tags(podcast.getTags())
+                .id(new IndexedContentId("readingListItem", item.getId()))
+                .title(item.getTitle())
+                .subtitle(item.getSubtitle())
+                .date(item.getDate())
+                .tags(item.getTags())
+                .uri(item.getUri())
+                .published(item.isPublished())
                 .build();
     }
 

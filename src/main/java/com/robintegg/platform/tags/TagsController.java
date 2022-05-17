@@ -1,6 +1,6 @@
 package com.robintegg.platform.tags;
 
-import com.robintegg.platform.home.LatestContent;
+import com.robintegg.platform.index.IndexedContents;
 import com.robintegg.platform.profile.Profile;
 import com.robintegg.platform.profile.Profiles;
 
@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class TagsController {
 
     private final Tags tags;
-    private final LatestContent latestContent;
+    private final IndexedContents indexedContents;
     private final Profiles profiles;
 
     @ModelAttribute("profile")
@@ -36,7 +36,7 @@ public class TagsController {
 
     @GetMapping("/{tagName}")
     public String getLatestTagContent( @PathVariable("tagName") String tagName, Model model, Pageable pageable){
-        model.addAttribute("latest", latestContent.getAllByTag(tagName, pageable));
+        model.addAttribute("latest", indexedContents.getLatestByTag(tagName, pageable));
         return "tag";
     }
 

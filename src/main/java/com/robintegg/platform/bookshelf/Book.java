@@ -43,6 +43,6 @@ public class Book {
             @JoinColumn(name="TAG_ID", referencedColumnName="ID")
     )
     private Set<Tag> tags;
-    private Boolean published;
+    private boolean published;
 
 }

@@ -44,5 +44,6 @@ public class Post {
     @Lob
     private String content;
     private String subtitle;
+    private boolean published;
 
 }

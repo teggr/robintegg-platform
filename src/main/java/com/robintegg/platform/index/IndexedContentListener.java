@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.robintegg.platform.bookshelf.Book;
 import com.robintegg.platform.content.ContentCreatedEvent;
 import com.robintegg.platform.content.ContentDeletedEvent;
 import com.robintegg.platform.content.ContentUpdatedEvent;

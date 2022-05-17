@@ -16,8 +16,12 @@ class PodcastIndexedContentFactory implements IndexedContentFactory {
 
         return IndexedContent.builder()
                 .id(new IndexedContentId("podcast", podcast.getId()))
+                .title(podcast.getTitle())
+                .subtitle(podcast.getSubtitle())
                 .date(podcast.getDate())
                 .tags(podcast.getTags())
+                .uri(podcast.getUri())
+                .published(podcast.isPublished())
                 .build();
     }
 

@@ -16,8 +16,12 @@ class BookIndexedContentFactory implements IndexedContentFactory {
 
         return IndexedContent.builder()
                 .id(new IndexedContentId("book", book.getId()))
+                .title(book.getTitle())
+                .subtitle(book.getSubtitle())
                 .date(book.getDate())
                 .tags(book.getTags())
+                .uri(book.getUri())
+                .published(book.isPublished())
                 .build();
     }
 

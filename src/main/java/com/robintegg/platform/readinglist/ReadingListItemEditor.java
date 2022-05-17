@@ -24,7 +24,7 @@ public class ReadingListItemEditor extends ContentEditor {
         this.tags = tags;
     }
 
-    public void create(String title, Instant date, String link, String subtitle, Set<String> tags) {
+    public void create(String title, Instant date, String link, String subtitle, Set<String> tags, boolean publish) {
 
         String uri = pathResolver.path(title);
 
@@ -35,6 +35,7 @@ public class ReadingListItemEditor extends ContentEditor {
                 .link(link)
                 .subtitle(subtitle)
                 .tags(this.tags.getTagsForNames(tags))
+                .published(publish)
                 .build();
 
         ReadingListItem saved = readingListItemRepository.save(item);

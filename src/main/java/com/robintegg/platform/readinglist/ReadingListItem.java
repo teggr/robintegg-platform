@@ -42,5 +42,6 @@ public class ReadingListItem {
             @JoinColumn(name="TAG_ID", referencedColumnName="ID")
     )
     private Set<Tag> tags;
+    private boolean published;
 
 }

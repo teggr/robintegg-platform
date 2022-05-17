@@ -8,7 +8,7 @@
 
         <article class="block" th:each="content : ${latest}">
 
-            <a th:href="@{'' + ${content.link}}" >
+            <a th:href="@{'' + ${content.uri}}" >
                 <article class="media" >
                     <figure class="media-left">
                         <p class="image is-128x128">
@@ -22,7 +22,7 @@
                             <p class="has-text-grey-light" th:text="${#temporals.format(content.date,'MMM dd, yyyy')}"></p>
                             <ul>
                                 <li class="is-inline mr-3" th:each="tag : ${content.tags}">
-                                    <a class="link" th:href="@{/tags/{id}(id=${tag})}" th:text="${tag}">tagName</a>
+                                    <a class="link" th:href="@{/tags/{id}(id=${tag.name})}" th:text="${tag.name}">tagName</a>
                                 </li>
                             </ul>
                         </div>

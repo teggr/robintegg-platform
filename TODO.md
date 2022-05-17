@@ -3,8 +3,7 @@
 ## milestone 2 - editing
 
 * editor
-  * publish indexed events - consolidate latest with indexed content
-  * full type definition
+  * full type definition - common attributes
     * books
     * podcasts
     * posts

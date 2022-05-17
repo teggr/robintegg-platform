@@ -12,12 +12,16 @@ class PostIndexedContentFactory implements IndexedContentFactory {
     @Override
     public IndexedContent create(Object source) {
 
-        Post podcast = (Post) source;
+        Post post = (Post) source;
 
         return IndexedContent.builder()
-                .id(new IndexedContentId("post", podcast.getId()))
-                .date(podcast.getDate())
-                .tags(podcast.getTags())
+                .id(new IndexedContentId("post", post.getId()))
+                .title(post.getTitle())
+                .subtitle(post.getSubtitle())
+                .date(post.getDate())
+                .tags(post.getTags())
+                .uri(post.getUri())
+                .published(post.isPublished())
                 .build();
     }
 

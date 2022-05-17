@@ -25,7 +25,7 @@ public class PostEditor extends ContentEditor {
         }
 
         public void create(String title, Instant date, String titleImageUrl, Set<String> tags, String content,
-                        String subtitle) {
+                        String subtitle, boolean publish) {
 
                 String uri = pathResolver.path(date, title);
 
@@ -37,6 +37,7 @@ public class PostEditor extends ContentEditor {
                                 .tags(this.tags.getTagsForNames(tags))
                                 .content(content)
                                 .subtitle(subtitle)
+                                .published(publish)
                                 .build();
 
                 Post saved = postRepository.save(post);
