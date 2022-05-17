@@ -1,4 +1,4 @@
-package com.robintegg.platform.bookshelf;
+package com.robintegg.platform.readinglist;
 
 import com.robintegg.platform.index.IndexedContent;
 import com.robintegg.platform.index.IndexedContentFactory;
@@ -7,23 +7,23 @@ import com.robintegg.platform.index.IndexedContentId;
 import org.springframework.stereotype.Component;
 
 @Component
-class BookIndexedContentFactory implements IndexedContentFactory {
+class ReadingListItemIndexedContentFactory implements IndexedContentFactory {
 
     @Override
     public IndexedContent create(Object source) {
 
-        Book book = (Book) source;
+        ReadingListItem podcast = (ReadingListItem) source;
 
         return IndexedContent.builder()
-                .id(new IndexedContentId("book", book.getId()))
-                .date(book.getDate())
-                .tags(book.getTags())
+                .id(new IndexedContentId("readingListItem", podcast.getId()))
+                .date(podcast.getDate())
+                .tags(podcast.getTags())
                 .build();
     }
 
     @Override
     public Class<?> type() {
-        return Book.class;
+        return ReadingListItem.class;
     }
 
 }

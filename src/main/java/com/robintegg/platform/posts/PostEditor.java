@@ -3,23 +3,26 @@ package com.robintegg.platform.posts;
 import java.time.Instant;
 import java.util.Set;
 
-import com.robintegg.platform.index.IndexedContents;
-import com.robintegg.platform.index.IndexedContent;
-import com.robintegg.platform.index.IndexedContentId;
+import com.robintegg.platform.content.ContentEditor;
 import com.robintegg.platform.tags.Tags;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
-
 @Service
-@RequiredArgsConstructor
-public class PostEditor {
+public class PostEditor extends ContentEditor {
 
         private final PostRepository postRepository;
         private final PostPathResolver pathResolver;
-        private final IndexedContents indexedContents;
         private final Tags tags;
+
+        public PostEditor(ApplicationEventPublisher eventPublisher, PostRepository postRepository,
+                        PostPathResolver pathResolver, Tags tags) {
+                super(eventPublisher);
+                this.postRepository = postRepository;
+                this.pathResolver = pathResolver;
+                this.tags = tags;
+        }
 
         public void create(String title, Instant date, String titleImageUrl, Set<String> tags, String content,
                         String subtitle) {
@@ -38,11 +41,7 @@ public class PostEditor {
 
                 Post saved = postRepository.save(post);
 
-                indexedContents.add(IndexedContent.builder()
-                                .id(new IndexedContentId("post", saved.getId()))
-                                .date(saved.getDate())
-                                .tags(this.tags.getTagsForNames(tags))
-                                .build());
+                publishCreatedEvent(saved);
 
         }
 

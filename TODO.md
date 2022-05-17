@@ -3,7 +3,7 @@
 ## milestone 2 - editing
 
 * editor
-  * publish indexed events - update other types
+  * publish indexed events - consolidate latest with indexed content
   * full type definition
     * books
     * podcasts
