@@ -39,7 +39,6 @@ public class PodcastEditor {
         indexedContents.add(IndexedContent.builder()
                 .id(new IndexedContentId("podcast", saved.getId()))
                 .date(saved.getDate())
-                .event("create")
                 .tags(this.tags.getTagsForNames(tags))
                 .build());
 

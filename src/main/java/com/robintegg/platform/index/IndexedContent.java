@@ -31,7 +31,6 @@ public class IndexedContent {
     @GeneratedValue
     private IndexedContentId id;
     private Instant date;
-    private String event;
     @ManyToMany
     @JoinTable(name = "INDEXED_LOG_TAGS",
      joinColumns = {

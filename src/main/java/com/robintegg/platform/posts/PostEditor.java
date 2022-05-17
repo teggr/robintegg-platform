@@ -41,7 +41,6 @@ public class PostEditor {
                 indexedContents.add(IndexedContent.builder()
                                 .id(new IndexedContentId("post", saved.getId()))
                                 .date(saved.getDate())
-                                .event("create")
                                 .tags(this.tags.getTagsForNames(tags))
                                 .build());
 

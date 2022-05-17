@@ -39,7 +39,6 @@ public class ReadingListItemEditor {
         indexedContents.add(IndexedContent.builder()
                 .id(new IndexedContentId("readingListItem", saved.getId()))
                 .date(saved.getDate())
-                .event("create")
                 .tags(this.tags.getTagsForNames(tags))
                 .build());
 
