@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: standard('Posts Admin')"></head>
+<body>
+    <th:block th:replace="fragments/menu :: standard" />
+
+    <section class="section posts">
+
+        <table class="table">
+            <thead class="th">
+                <tr>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Published</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="post : ${posts}">
+                    <td th:text="${#temporals.format(post.date,'MMM dd, yyyy')}"></td>
+                    <td th:text="${post.title}"></td>
+                    <td >
+                        <form class="form" th:action="@{/admin/posts}" method="post">
+                            <span th:text="${post.published}" > </span>
+                            <button class="button" type="submit" th:unless="${post.published}" name="publish" th:value="${post.id}">Publish</button>
+                            <button class="button" type="submit" th:if="${post.published}" name="unpublish" th:value="${post.id}">Unpublish</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form class="form" th:action="@{/admin/posts}" method="post">
+                            <button class="button" type="submit" name="edit" th:value="${post.id}">Edit</button>
+                            <button class="button" type="submit" name="delete" th:value="${post.id}">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <nav th:if="${posts.getTotalPages()>1}" class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a th:if="${posts.hasPrevious()}" class="pagination-previous" th:href="@{/posts(page=${posts.previousPageable().getPageNumber()},size=${posts.previousPageable().getPageSize()})}">Previous</a>
+            <a th:if="${posts.hasNext()}" class="pagination-next" th:href="@{/posts(page=${posts.nextPageable().getPageNumber()},size=${posts.nextPageable().getPageSize()})}">Next page</a>
+            <ul class="pagination-list">
+                <th:block th:if="${posts.getTotalPages() > 3}">
+                    <li><a class="pagination-link" aria-label="Goto first page" th:href="@{/posts(page=0,size=${posts.getSize()})}">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                </th:block>
+                <th:block th:if="${posts.getNumber() > 0}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${posts.getNumber()}" th:href="@{/posts(page=${posts.getNumber() - 1},size=${posts.getSize()})}">45</a></li>
+                </th:block>
+                <li><a class="pagination-link is-current" aria-label="Current Page " aria-current="page" th:text="${posts.getNumber() + 1}" th:href="@{/posts(page=${posts.getNumber()},size=${posts.getSize()})}">46</a></li>
+                <th:block th:if="${posts.getNumber() + 1 < posts.getTotalPages()}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${posts.getNumber() + 2}" th:href="@{/posts(page=${posts.getNumber() + 1},size=${posts.getSize()})}">47</a></li>
+                </th:block>
+                <th:block th:if="${posts.getTotalPages() > 3}">
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li th:if="${posts.getTotalPages()>1}"><a class="pagination-link" aria-label="Goto last page" th:text="${posts.getTotalPages()}" th:href="@{/posts(page=0,size=${posts.getTotalPages() - 1})}">86</a></li>
+                </th:block>
+            </ul>
+        </nav>
+
+    </section>
+
+    <th:block th:replace="fragments/footer :: standard" />
+    
+</body>
+</html>

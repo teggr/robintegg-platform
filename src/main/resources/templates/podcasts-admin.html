@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: standard('Podcasts Admin')"></head>
+<body>
+    <th:block th:replace="fragments/menu :: standard" />
+
+    <section class="section podcasts">
+
+        <table class="table">
+            <thead class="th">
+                <tr>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Published</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="podcast : ${podcasts}">
+                    <td th:text="${#temporals.format(podcast.date,'MMM dd, yyyy')}"></td>
+                    <td th:text="${podcast.title}"></td>
+                    <td >
+                        <form class="form" th:action="@{/admin/podcasts}" method="post">
+                            <span th:text="${podcast.published}" > </span>
+                            <button class="button" type="submit" th:unless="${podcast.published}" name="publish" th:value="${podcast.id}">Publish</button>
+                            <button class="button" type="submit" th:if="${podcast.published}" name="unpublish" th:value="${podcast.id}">Unpublish</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form class="form" th:action="@{/admin/podcasts}" method="post">
+                            <button class="button" type="submit" name="edit" th:value="${podcast.id}">Edit</button>
+                            <button class="button" type="submit" name="delete" th:value="${podcast.id}">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <nav th:if="${podcasts.getTotalPages()>1}" class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a th:if="${podcasts.hasPrevious()}" class="pagination-previous" th:href="@{/podcasts(page=${podcasts.previousPageable().getPageNumber()},size=${podcasts.previousPageable().getPageSize()})}">Previous</a>
+            <a th:if="${podcasts.hasNext()}" class="pagination-next" th:href="@{/podcasts(page=${podcasts.nextPageable().getPageNumber()},size=${podcasts.nextPageable().getPageSize()})}">Next page</a>
+            <ul class="pagination-list">
+                <th:block th:if="${podcasts.getTotalPages() > 3}">
+                    <li><a class="pagination-link" aria-label="Goto first page" th:href="@{/podcasts(page=0,size=${podcasts.getSize()})}">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                </th:block>
+                <th:block th:if="${podcasts.getNumber() > 0}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${podcasts.getNumber()}" th:href="@{/podcasts(page=${podcasts.getNumber() - 1},size=${podcasts.getSize()})}">45</a></li>
+                </th:block>
+                <li><a class="pagination-link is-current" aria-label="Current Page " aria-current="page" th:text="${podcasts.getNumber() + 1}" th:href="@{/podcasts(page=${podcasts.getNumber()},size=${podcasts.getSize()})}">46</a></li>
+                <th:block th:if="${podcasts.getNumber() + 1 < podcasts.getTotalPages()}">
+                    <li><a class="pagination-link" aria-label="Goto previous page" th:text="${podcasts.getNumber() + 2}" th:href="@{/podcasts(page=${podcasts.getNumber() + 1},size=${podcasts.getSize()})}">47</a></li>
+                </th:block>
+                <th:block th:if="${podcasts.getTotalPages() > 3}">
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li th:if="${podcasts.getTotalPages()>1}"><a class="pagination-link" aria-label="Goto last page" th:text="${podcasts.getTotalPages()}" th:href="@{/podcasts(page=0,size=${podcasts.getTotalPages() - 1})}">86</a></li>
+                </th:block>
+            </ul>
+        </nav>
+
+    </section>
+
+    <th:block th:replace="fragments/footer :: standard" />
+    
+</body>
+</html>
