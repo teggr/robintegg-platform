@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: standard('Edit Book')"></head>
+<head th:replace="fragments/head :: standard('Create Book')"></head>
 <body>
     <th:block th:replace="fragments/menu :: standard" />
     <section class="section">
         <div class="container">
-          <form th:action="@{/admin/bookshelf/edit/{id}(id=${form.id})}" th:object="${form}" method="post">
+          <form th:action="@{/admin/bookshelf/create}" th:object="${form}" method="post">
 
             <div class="field">
               <label class="label" for="title">Title</label>
@@ -41,12 +41,12 @@
 
             <label class="checkbox">
               <input type="checkbox" th:field="*{publish}">
-              Published
+              Publish
             </label>
 
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link" type="submit" name="update">Submit</button>
+                <button class="button is-link" type="submit" name="create">Submit</button>
               </div>
               <div class="control">
                 <a class="button is-link is-light" th:href="@{/admin/bookshelf}">Cancel</a>

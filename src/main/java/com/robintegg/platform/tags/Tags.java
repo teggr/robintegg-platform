@@ -24,6 +24,9 @@ public class Tags {
 
     @Transactional
     public Set<Tag> getTagsForNames(Set<String> tags) {
+        if(tags == null) {
+            return Set.of();
+        }
         return tags.stream()
                 .map(t -> {
                     Optional<Tag> tag = tagRepository.findByName(t);

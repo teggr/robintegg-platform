@@ -3,7 +3,7 @@
 ## milestone 2 - editing
 
 * editor
-  * full type definition - common attributes
+  * full type definition - common attributes / create / edit
     * books
     * podcasts
     * posts

@@ -4,7 +4,17 @@
 <body>
     <th:block th:replace="fragments/menu :: standard" />
 
+    <section class="section new">
+
+        <h1 class="title">Create New</h1>
+
+        <a class="button is-link" type="submit" th:href="@{/admin/bookshelf/create}">Submit</a>
+
+    </section>
+
     <section class="section books">
+
+        <h1 class="title">Books</h1>
 
         <table class="table">
             <thead class="th">

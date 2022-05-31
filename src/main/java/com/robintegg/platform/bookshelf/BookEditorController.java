@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/admin/bookshelf/edit")
+@RequestMapping("/admin/bookshelf")
 @RequiredArgsConstructor
 public class BookEditorController {
 
@@ -28,30 +28,28 @@ public class BookEditorController {
         return profiles.getProfile();
     }
 
-    @GetMapping("/new")
+    @GetMapping("/create")
     public String getNewBookTemplate(Model model) {
         model.addAttribute("form", BookForm.builder().build());
-        model.addAttribute("action", "new");
-        return "book-edit";
+        return "book-create";
     }
 
-    @PostMapping(path = "/new", params = "create")
+    @PostMapping(path = "/create", params = "create")
     public String postCreateBook(BookForm form, BindingResult binding) {
         if (binding.hasErrors()) {
-            return "book-edit";
+            return "book-create";
         }
         Long id = bookEditor.create(form.getTitle(), form.getDate(), form.getSubtitle(), form.getTags(), form.getPublish());
         return "redirect:/admin/bookshelf/edit/" + id;
     }
 
-    @GetMapping("/{id}")
-    public String getBookshelfItems(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("book", bookEditor.getById(id));
-        model.addAttribute("action", "update");
+    @GetMapping("/edit/{id}")
+    public String getBookshelfItem(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("form", BookForm.from(bookEditor.getById(id)));
         return "book-edit";
     }
 
-    @PostMapping(path = "/{id}", params = "update")
+    @PostMapping(path = "/edit/{id}", params = "update")
     public String postUpdateBook(@PathVariable("id") Long id, BookForm form, BindingResult binding) {
         if (binding.hasErrors()) {
             return "book-edit";
@@ -60,7 +58,7 @@ public class BookEditorController {
         return "redirect:/admin/bookshelf/edit/" + id;
     }
 
-    @PostMapping(path = "/{id}", params = "delete")
+    @PostMapping(path = "/edit/{id}", params = "delete")
     public String postDelete(@RequestParam("delete") Long id) {
         bookEditor.delete(id);
         return "redirect:/admin/bookshelf";
