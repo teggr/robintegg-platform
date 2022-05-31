@@ -30,7 +30,11 @@ public class PodcastEditor extends ContentEditor {
         return podcastRepository.findAll(pageable);
     }
 
-    public void create(String title, Instant date, String link, String subtitle, Set<String> tags, boolean publish) {
+    public Podcast getById(Long id) {
+        return podcastRepository.findById(id).orElse(null);
+    }
+
+    public Long create(String title, Instant date, String link, String subtitle, Set<String> tags, boolean publish) {
 
         String uri = pathResolver.path(title);
 
@@ -47,6 +51,8 @@ public class PodcastEditor extends ContentEditor {
         Podcast saved = podcastRepository.save(podcast);
 
         publishCreatedEvent(saved);
+
+        return saved.getId();
 
     }
 

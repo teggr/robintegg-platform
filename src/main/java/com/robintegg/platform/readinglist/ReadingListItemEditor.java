@@ -30,7 +30,11 @@ public class ReadingListItemEditor extends ContentEditor {
         return readingListItemRepository.findAll(pageable);
     }
 
-    public void create(String title, Instant date, String link, String subtitle, Set<String> tags, boolean publish) {
+    public ReadingListItem getById(Long id) {
+        return readingListItemRepository.findById(id).orElse(null);
+}
+
+    public Long create(String title, Instant date, String link, String subtitle, Set<String> tags, boolean publish) {
 
         String uri = pathResolver.path(title);
 
@@ -47,6 +51,8 @@ public class ReadingListItemEditor extends ContentEditor {
         ReadingListItem saved = readingListItemRepository.save(item);
 
         publishCreatedEvent(saved);
+
+        return saved.getId();
 
     }
 

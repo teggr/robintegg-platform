@@ -1,4 +1,4 @@
-package com.robintegg.platform.bookshelf;
+package com.robintegg.platform.podcasts;
 
 import java.time.Instant;
 import java.util.Set;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-class BookForm {
+class PodcastForm {
 
     private Long id;
     private String title;
@@ -24,14 +24,14 @@ class BookForm {
     private Set<String> tags;
     private Boolean publish;
 
-    public static BookForm from(Book book) {
-        return new BookForm(
-            book.getId(),
-            book.getTitle(),
-            book.getDate(),
-            book.getSubtitle(),
-            book.getTags().stream().map(Tag::getName).collect(Collectors.toSet()),
-            book.isPublished()
+    public static PodcastForm from(Podcast podcast) {
+        return new PodcastForm(
+            podcast.getId(),
+            podcast.getTitle(),
+            podcast.getDate(),
+            podcast.getSubtitle(),
+            podcast.getTags().stream().map(Tag::getName).collect(Collectors.toSet()),
+            podcast.isPublished()
         );
     }
 

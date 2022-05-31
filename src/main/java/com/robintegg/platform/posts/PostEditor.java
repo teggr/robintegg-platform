@@ -28,9 +28,13 @@ public class PostEditor extends ContentEditor {
 
         public Page<Post> getPosts(Pageable pageable) {
                 return postRepository.findAll(pageable);
-            }
+        }
 
-        public void create(String title, Instant date, String titleImageUrl, Set<String> tags, String content,
+        public Post getById(Long id) {
+                return postRepository.findById(id).orElse(null);
+        }
+
+        public Long create(String title, Instant date, String titleImageUrl, Set<String> tags, String content,
                         String subtitle, boolean publish) {
 
                 String uri = pathResolver.path(date, title);
@@ -49,6 +53,8 @@ public class PostEditor extends ContentEditor {
                 Post saved = postRepository.save(post);
 
                 publishCreatedEvent(saved);
+
+                return saved.getId();
 
         }
 

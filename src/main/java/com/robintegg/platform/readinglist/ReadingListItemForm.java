@@ -1,4 +1,4 @@
-package com.robintegg.platform.bookshelf;
+package com.robintegg.platform.readinglist;
 
 import java.time.Instant;
 import java.util.Set;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-class BookForm {
+class ReadingListItemForm {
 
     private Long id;
     private String title;
@@ -24,14 +24,14 @@ class BookForm {
     private Set<String> tags;
     private Boolean publish;
 
-    public static BookForm from(Book book) {
-        return new BookForm(
-            book.getId(),
-            book.getTitle(),
-            book.getDate(),
-            book.getSubtitle(),
-            book.getTags().stream().map(Tag::getName).collect(Collectors.toSet()),
-            book.isPublished()
+    public static ReadingListItemForm from(ReadingListItem item) {
+        return new ReadingListItemForm(
+            item.getId(),
+            item.getTitle(),
+            item.getDate(),
+            item.getSubtitle(),
+            item.getTags().stream().map(Tag::getName).collect(Collectors.toSet()),
+            item.isPublished()
         );
     }
 
